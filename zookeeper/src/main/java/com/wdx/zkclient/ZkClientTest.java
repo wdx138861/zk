@@ -8,7 +8,7 @@ import org.apache.zookeeper.CreateMode;
 public class ZkClientTest {
 
     //指定zk集群
-    private static final String CLUSTER = "127.0.0.1:2181";
+    private static final String CLUSTER = "121.42.13.24:2181";
 
     //指定节点名称
     private static final String PATH = "/mylog";
