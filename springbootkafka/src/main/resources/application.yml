@@ -1,0 +1,15 @@
+kafka:
+ topic: cities
+
+spring:
+ kafka:
+  bootstrap-servers: 121.42.13.24:9092,121.42.13.24:9093
+   # producer:
+    # key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    # value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  consumer:
+   group-id: group0
+   # key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+   # value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+
