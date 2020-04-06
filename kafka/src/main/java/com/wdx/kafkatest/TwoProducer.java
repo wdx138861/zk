@@ -13,7 +13,7 @@ public class TwoProducer {
 
     public TwoProducer() {
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", "121.42.13.24:9092,121.42.13.24:9093,121.42.13.24:9094");
+        properties.put("bootstrap.servers", "121.42.13.24:9092,121.42.13.24:9093");
         properties.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         this.producer = new KafkaProducer<Integer, String>(properties);
@@ -23,13 +23,10 @@ public class TwoProducer {
         //指定主题、要写入的partition、key、消息本身
         ProducerRecord<Integer, String> record =
                 new ProducerRecord<Integer, String>("cities", 0, 1, "shanghai");
-        producer.send(record, new Callback() {
-            public void onCompletion(RecordMetadata recordMetadata, Exception exception) {
-                System.out.println("partition = " + recordMetadata.partition());
-                System.out.println("topic = " + recordMetadata.topic());
-                System.out.println("offset = " + recordMetadata.offset());
-            }
-        });
-
+        producer.send(record, (recordMetadata, exception) -> {
+            System.out.println("partition = " + recordMetadata.partition());
+            System.out.println("topic = " + recordMetadata.topic());
+            System.out.println("offset = " + recordMetadata.offset());
+            });
     }
 }
