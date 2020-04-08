@@ -1,0 +1,7 @@
+/.idea/$PRODUCT_WORKSPACE_FILE$
+/.idea/.gitignore
+/.idea/checkstyle-idea.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/netty.iml
+/target/
