@@ -8,17 +8,16 @@
        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <!-- 指定当前工程再Monitor中的名称，一般与工程名相同 -->
-    <dubbo:application name="04-consumer-version" />
+    <dubbo:application name="05-consumer-group" />
 
-    <!--<dubbo:registry address="zookeeper://aliyunOS:2181" />-->
-    <dubbo:registry address="zookeeper://aliyunOS:2181?backup=aliyunOS:2182" />
+    <dubbo:registry address="zookeeper://aliyunOS:2181" />
 
-    <!-- 指定消费0.0.1版本 -->
-    <dubbo:reference id="someService" version="0.0.1"
+    <!-- 指定调用微信服务 -->
+    <dubbo:reference id="weixin" group="pay.weixin"
                      interface="com.wdx.service.SomeService" />
 
-    <!-- 指定消费0.0.2版本 -->
-    <!--<dubbo:reference id="someService" version="0.0.2"
-                     interface="com.wdx.service.SomeService" />-->
+    <!-- 指定调用支付宝服务 -->
+    <dubbo:reference id="zhifubao" group="pay.zhifubao"
+                     interface="com.wdx.service.SomeService" />
 
 </beans>
