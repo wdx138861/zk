@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo
+       http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 指定当前工程再Monitor中的名称，一般与工程名相同 -->
+    <dubbo:application name="02-provider-zk" />
+
+    <!-- 声明zk注册中心：单机版 -->
+    <!--<dubbo:registry address="zookeeper://aliyunOS:2181" />-->
+    <dubbo:registry address="zookeeper://aliyunOS:2181?backup=aliyunOS:2182" />
+
+    <bean id="oldService" class="com.wdx.provider.OldServiceImpl" />
+    <bean id="newService" class="com.wdx.provider.NewServiceImpl" />
+
+    <!-- 暴露服务 -->
+    <dubbo:service interface="com.wdx.service.SomeService" ref="oldService" version="0.0.1"/>
+    <dubbo:service interface="com.wdx.service.SomeService" ref="newService" version="0.0.2" />
+
+</beans>

@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 指定当前工程再Monitor中的名称，一般与工程名相同 -->
+    <dubbo:application name="03-consumer-web" />
+
+    <dubbo:registry address="zookeeper://aliyunOS:2181" />
+
+    <dubbo:reference id="someService" interface="com.wdx.service.SomeService" />
+
+    <mvc:component-scan base-package="com.wdx.controller" />
+
+</beans>
