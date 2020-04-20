@@ -13,7 +13,17 @@
     <!--<dubbo:registry address="zookeeper://aliyunOS:2181" />-->
     <dubbo:registry address="zookeeper://aliyunOS:2181?backup=aliyunOS:2182" />
 
+    <!-- 指定所有方法采用轮询 -->
     <dubbo:reference id="someService" check="false"
-                     interface="com.wdx.service.SomeService" />
+                     interface="com.wdx.service.SomeService"
+                     loadbalance="roundrobin" retries="2" cluster="failfast"/>
+
+    <!-- 指定不同方法采用不同的负载均衡算法 -->
+    <!--<dubbo:reference interface="com.wdx.service.SomeService"
+                     id="someService" check="false">
+        <dubbo:method name="hello" loadbalance="roundrobin" />
+        <dubbo:method name="doFirst" loadbalance="random" />
+        <dubbo:method name="doFirst" loadbalance="leastactive" />
+    </dubbo:reference>-->
 
 </beans>

@@ -18,6 +18,6 @@
 
     <!-- 指定调用支付宝服务 -->
     <dubbo:reference id="zhifubao" group="pay.zhifubao"
-                     interface="com.wdx.service.SomeService" />
+                     interface="com.wdx.service.SomeService" protocol="dubbo, rmi"/>
 
 </beans>

@@ -8,16 +8,18 @@
        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <!-- 指定当前工程再Monitor中的名称，一般与工程名相同 -->
-    <dubbo:application name="02-provider-zk" />
+    <dubbo:application name="02-provider-zk02" />
 
     <!-- 声明zk注册中心：单机版 -->
     <!--<dubbo:registry address="zookeeper://aliyunOS:2181" />-->
     <dubbo:registry address="zookeeper://aliyunOS:2181?backup=aliyunOS:2182" />
 
+    <dubbo:protocol name="dubbo" port="20881" />
+
     <bean id="someService" class="com.wdx.provider.SomeServiceImpl" />
 
-    <!-- 暴露服务：retry:重试策略，额外两次 ; cluster:容错策略-->
+    <!-- 暴露服务 -->
     <dubbo:service interface="com.wdx.service.SomeService" ref="someService"
-    retries="2" cluster="failfast"/>
+                    loadbalance="roundrobin"/>
 
 </beans>

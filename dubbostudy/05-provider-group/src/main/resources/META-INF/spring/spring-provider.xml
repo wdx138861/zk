@@ -14,13 +14,19 @@
     <!--<dubbo:registry address="zookeeper://aliyunOS:2181" />-->
     <dubbo:registry address="zookeeper://aliyunOS:2181?backup=aliyunOS:2182" />
 
+    <!-- 指定dubbo协议和端口 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!-- 指定rmi协议和端口 -->
+    <dubbo:protocol name="rmi" port="1099" />
+
     <bean id="wexinServiceImpl" class="com.wdx.provider.WexinServiceImpl" />
     <bean id="zhifubaoServiceImpl" class="com.wdx.provider.ZhifubaoServiceImpl" />
 
-    <!-- 暴露服务 -->
+    <!-- 暴露服务，默认使用dubbo协议 -->
     <dubbo:service interface="com.wdx.service.SomeService"
-                   ref="wexinServiceImpl" group="pay.weixin"/>
+                   ref="wexinServiceImpl" group="pay.weixin" protocol="dubbo"/>
     <dubbo:service interface="com.wdx.service.SomeService"
-                   ref="zhifubaoServiceImpl" group="pay.zhifubao" />
+                   ref="zhifubaoServiceImpl" group="pay.zhifubao" protocol="dubbo, rmi"/>
 
 </beans>
