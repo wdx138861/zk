@@ -1,0 +1,65 @@
+# jar启动时，可以通过添加参数确定启动的配置文件 java -jar xxx --spring.profiles.active=prod
+spring:
+  profiles: # 激活的配置文件
+    active:  dev
+  mvc:  # mvc视图配置
+    view:
+      prefix: /
+      suffix: .jsp
+  datasource: # 数据库配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://aliyunOS:3306/springboot?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: wdx082018
+  # 单机redis配置
+  redis:
+    host: aliyunOS
+    port: 6379
+    # password: wdx08062018
+    # 高可用集群redis
+#    sentinel:
+#      master: mymaster
+#      nodes: xx1:6379,xx2:6379
+  cache:
+    type: redis
+    cache-names: realTimeCache
+
+mybatis:
+  mapper-locations: classpath*:xml/*.xml  # 指定mybatis的xml文件地址
+  type-aliases-package: com.example.springboot.dao  # 指定实体类的包
+
+# logback日志控制
+logging:
+  # 指定日志显示的位置及格式
+  pattern:
+    console: logs-%level %msg%n
+
+  level:
+    root: warn # 减少项目启动时的日志输出
+    com.example.springboot.dao: # 显示指定dao包类中的执行日志
+
+
+#student:
+#  name: 张三
+
+## 三部分之间是由三个减号（-）分隔的，必须是三个。而这三部分充当着之前的三个配置文件
+#---
+#
+#spring:
+#  profiles: dev
+#
+#server:
+#  port: 8888
+#  servlet:
+#    context-path: /www
+#
+#---
+#spring:
+#  profiles: prod
+#
+#server:
+#  port: 9999
+#  servlet:
+#    context-path: /ddd
+

@@ -1,0 +1,38 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /wdx
+  compression:  # 设置tomcat的压缩响应
+    enabled: true
+    min-response-size: 2048
+  tomcat:
+    uri-encoding: utf-8
+
+# actuator监控器
+management:
+  server:
+    port: 9999
+    servlet:
+      context-path: /manager
+  endpoints:
+    web:
+      base-path: /base  # 监控器的基本路径，不指定默认为/actuator
+      exposure:
+        include: '*' # 开放所有监控终端
+        # include: ['env', 'beans'] # 开放指定监控终端
+        exclude: ['env', 'beans'] # 单独关闭指定终端
+
+# 自定义info信息
+info:
+  company:
+    name: wdx
+    url: http://www.wdx.com
+    addr: wuhan
+  auth:
+    name: wdx
+    dep: develepment
+  project: # 从pom中读取相应的值
+    groupid: @project.groupId@
+    artifactid: @project.artifactId@
+    version : @project.version@
+    name: @project.name@
