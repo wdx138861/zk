@@ -1,0 +1,4 @@
+server:
+  port: 8080
+
+providerServer: http://localhost:8081/depart/
