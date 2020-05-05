@@ -35,9 +35,9 @@ logging:
   pattern:
     console: logs-%level %msg%n
 
-  level:
-    root: warn # 减少项目启动时的日志输出
-    com.example.springboot.dao: # 显示指定dao包类中的执行日志
+#  level:
+#    root: warn # 减少项目启动时的日志输出
+#    com.example.springboot.dao: # 显示指定dao包类中的执行日志
 
 
 #student:
