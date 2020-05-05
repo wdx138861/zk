@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: consumer
+  dubbo:
+    registry: zookeeper://aliyunOS:2181
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
