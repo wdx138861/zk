@@ -1,0 +1,54 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://aliyunOS:3306/test?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: wdx082018
+
+  application:
+    name: wdxmsc-provider-8081
+
+logging:
+  pattern:
+    console: level-%level %msg%n
+
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.hql.internal.ast.exec.BasicExecutor: trace
+    com.wdx: debug
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka8100.com:8100/eureka,http://eureka8200.com:8200/eureka,http://eureka8300.com:8300/eureka
+  instance:
+    instance-id: wdxmsc-provider-8081
+
+info:
+  auth: wdx
+  app.name: wdxmsc
+  app.desc: studey
+  company.name: grnx
+  company.addr: 武汉市
+
+management:
+  # 开启所有监控终端
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
